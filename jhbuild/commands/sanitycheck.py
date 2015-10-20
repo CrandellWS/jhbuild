@@ -71,20 +71,20 @@ class cmd_sanitycheck(Command):
 
         # check whether various tools are installed
         if not check_version(['libtoolize', '--version'],
-                             r'libtoolize \([^)]*\) ([\d.]+)', '1.5'):
+                             r'libtoolize \([^)]*\) (?P<version>[\d.]+)', '1.5'):
             uprint(_('%s not found') % 'libtool >= 1.5')
         if not check_version(['gettext', '--version'],
-                             r'gettext \([^)]*\) ([\d.]+)', '0.10.40'):
+                             r'gettext \([^)]*\) (?P<version>[\d.]+)', '0.10.40'):
             uprint(_('%s not found') % 'gettext >= 0.10.40')
         if not check_version(['pkg-config', '--version'],
-                             r'^([\d.]+)', '0.14.0'):
+                             r'^(?P<version>[\d.]+)', '0.14.0'):
             uprint(_('%s not found') % 'pkg-config >= 0.14.0')
         if not check_version(['autoconf', '--version'],
-                             r'autoconf \([^)]*\) ([\d.]+)', '2.53'):
+                             r'autoconf \([^)]*\) (?P<version>[\d.]+)', '2.53'):
             autoconf = False
             uprint(_('%s not found') % 'autoconf >= 2.53')
         if not check_version(['automake', '--version'],
-                             r'automake \([^)]*\) ([\d.]+)', '1.10'):
+                             r'automake \([^)]*\) (?P<version>[\d.]+)', '1.10'):
             uprint(_('%s not found') % 'automake >= 1.10')
 
         if (autoconf):
@@ -137,7 +137,7 @@ class cmd_sanitycheck(Command):
                     uprint(_('Installed git program is not the right git'))
                 else:
                     if not check_version(['git', '--version'],
-                                 r'git version ([\d.]+)', '1.5.6'):
+                                 r'git version (?P<version>[\d.]+)', '1.5.6'):
                          uprint(_('%s not found') % 'git >= 1.5.6')
             except:
                 uprint(_('Could not check git program'))

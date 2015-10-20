@@ -32,7 +32,7 @@ def get_output(cmd, cwd=None, extra_env=None, get_stderr = True):
     update the environment in the child process.
 
     If the get_stderr parameter is set to False, then stderr output is ignored.
-    
+
     Raises CommandError if the command exited abnormally or had a non-zero
     error code.
     '''
@@ -98,7 +98,7 @@ class Pipeline(subprocess.Popen):
             self.stderr = os.fdopen(errread, readmode, bufsize)
         elif stderr == subprocess.STDOUT:
             stderr = stdout
-        
+
         self.children = []
         close_stdin = False
         for index, cmd in enumerate(commands):
@@ -263,5 +263,5 @@ def check_version(cmd, regexp, minver, extra_env=None):
     match = re.match(regexp, data, re.MULTILINE)
     if not match:
         return False
-    version = match.group(1)
+    version = match.group('version')
     return compare_version(version, minver)
