@@ -221,6 +221,17 @@
     </suggests>
  </autotools>
 
+  <autotools id="libgames-support">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <dep package="libgee"/>
+      <dep package="m4-common"/>
+      <dep package="vala"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="libgda-5.2" autogenargs="--with-java=no --disable-tools --enable-gda-gi --enable-gdaui-gi --disable-vala --disable-gdaui-vala">
     <if condition-set="freebsd">
       <autogenargs value="LIBCRYPTO_CFLAGS=' ' LIBCRYPTO_LIBS='-lcrypto' --with-bdb=/usr/local --with-bdb-libdir-name=lib/db5 --with-bdb-includedir-name=include/db5"/>
@@ -925,34 +936,19 @@
     </dependencies>
   </autotools>
 
-  <autotools id="gnome-music">
-    <branch/>
-    <dependencies>
-      <dep package="dbus-python"/>
-      <dep package="gnome-themes-standard"/>
-      <dep package="gobject-introspection"/>
-      <dep package="grilo"/>
-      <dep package="grilo-plugins"/>
-      <dep package="gtk+"/>
-      <dep package="gvfs"/>
-      <dep package="intltool"/>
-      <dep package="pygobject"/>
-      <dep package="tracker"/>
-      <dep package="libmediaart"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gnome-nibbles">
     <branch/>
     <dependencies>
       <dep package="appstream-glib"/>
-      <dep package="intltool"/>
-      <dep package="librsvg"/>
-      <dep package="gtk+"/>
-      <dep package="libcanberra"/>
-      <dep package="yelp-tools"/>
       <dep package="clutter"/>
       <dep package="clutter-gtk"/>
+      <dep package="gtk+"/>
+      <dep package="intltool"/>
+      <dep package="libcanberra"/>
+      <dep package="libgames-support"/>
+      <dep package="librsvg"/>
+      <dep package="vala"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -962,7 +958,6 @@
       <dep package="gegl"/>
       <dep package="cairo"/>
       <dep package="clutter-gtk"/>
-      <dep package="dleyna-renderer"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
       <dep package="gnome-desktop"/>

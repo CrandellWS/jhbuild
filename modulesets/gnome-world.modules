@@ -114,6 +114,9 @@
 
   <include href="gnome-apps-3.20.modules"/>
 
+  <!-- Temporarily moved from gnome-apps to gnome-world due to the dependency
+       on gconf. gconf is not needed at runtime or even make time, only at
+       configure time, so this should not be hard to fix. -->
   <autotools id="aisleriot"
              autogenargs="--with-platform=gtk-only">
     <branch/>
@@ -251,6 +254,36 @@
       <dep package="libxslt"/>
       <dep package="libxml2"/>
       <dep package="intltool"/>
+    </dependencies>
+  </autotools>
+
+  <!-- Temporarily removed from gnome-apps because:
+
+       a) It needs to be ported to grilo-0.3.
+       b) dbus-python is in gnome-world, which is not included in gnome-apps.
+       c) dbus-python is a python2 build that depends on pygobject-python2,
+          whereas gnome-music depends on pygobject (python3 build).
+
+       Also, pygobject-python2 has a dependency on unknown "py2cairo" module,
+       but that doesn't matter much since this should not depend on
+       pygobject-python2 anyway.
+
+       https://mail.gnome.org/archives/desktop-devel-list/2015-October/msg00030.html
+  -->
+  <autotools id="gnome-music">
+    <branch/>
+    <dependencies>
+      <dep package="dbus-python"/>
+      <dep package="gnome-themes-standard"/>
+      <dep package="gobject-introspection"/>
+      <dep package="grilo"/>
+      <dep package="grilo-plugins"/>
+      <dep package="gtk+"/>
+      <dep package="gvfs"/>
+      <dep package="intltool"/>
+      <dep package="pygobject"/>
+      <dep package="tracker"/>
+      <dep package="libmediaart"/>
     </dependencies>
   </autotools>
 
@@ -3006,24 +3039,28 @@
     </dependencies>
   </autotools>
 
-  <autotools id="retro-plugins-game-boy"
-             skip-autogen="true">
+  <autotools id="retro-plugins-game-boy">
     <branch repo="github.com"
             module="Kekun/retro-plugins-game-boy.git"/>
     <dependencies>
     </dependencies>
   </autotools>
 
-  <autotools id="retro-plugins-nes"
-             skip-autogen="true">
+  <autotools id="retro-plugins-nes">
     <branch repo="github.com"
             module="Kekun/retro-plugins-nes.git"/>
     <dependencies>
     </dependencies>
   </autotools>
 
-  <autotools id="retro-plugins-snes"
-             skip-autogen="true">
+  <autotools id="retro-plugins-pce">
+    <branch repo="github.com"
+            module="Kekun/retro-plugins-pce.git"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
+  <autotools id="retro-plugins-snes">
     <branch repo="github.com"
             module="Kekun/retro-plugins-snes.git"/>
     <dependencies>
@@ -3045,6 +3082,7 @@
     <branch repo="github.com"
             module="Kekun/retro-gtk.git"/>
     <dependencies>
+      <dep package="clutter-gtk"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="jsk"/>
@@ -3226,21 +3264,18 @@
     </dependencies>
   </autotools>
 
-  <autotools id="libgames-support">
-    <branch/>
+  <autotools id="libratbag">
+    <branch repo="github.com" checkoutdir="libratbag" module="libratbag/libratbag.git"/>
     <dependencies>
-      <dep package="glib"/>
-      <dep package="gtk+"/>
-      <dep package="libgee"/>
-      <dep package="m4-common"/>
-      <dep package="vala"/>
+      <dep package="libudev"/>
+      <dep package="libevdev"/>
     </dependencies>
   </autotools>
 
   <autotools id="gnome-games"
              autogenargs="--enable-vala">
     <branch repo="github.com"
-            module="sebn/gnome-games.git"/>
+            module="Kekun/gnome-games.git"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -3254,6 +3289,7 @@
     <suggests>
       <dep package="retro-plugins-game-boy"/>
       <dep package="retro-plugins-nes"/>
+      <dep package="retro-plugins-pce"/>
       <dep package="retro-plugins-snes"/>
     </suggests>
   </autotools>

@@ -42,8 +42,6 @@
     href="http://icon-theme.freedesktop.org/releases/"/>
 <repository type="tarball" name="nice.freedesktop.org"
     href="http://nice.freedesktop.org/releases/"/>
-<repository type="tarball" name="itstool.org"
-    href="http://files.itstool.org/itstool/"/>
 <repository type="tarball" name="libpwquality"
     href="https://fedorahosted.org/releases/l/i/libpwquality/"/>
 <repository type="tarball" name="ftp.mozilla.org"
@@ -490,19 +488,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="fontconfig"
-    autogenargs="--disable-docs --with-default-fonts=${prefix}/share/fonts --with-add-fonts=/usr/local/share/fonts,/usr/share/fonts">
-    <pkg-config>fontconfig.pc</pkg-config>
-    <branch repo="freedesktop.org"
-            module="fontconfig/release/fontconfig-${version}.tar.bz2"
-            version="2.11.1"
-            hash="sha256:dc62447533bca844463a3c3fd4083b57c90f18a70506e7a9f4936b5a1e516a99"/>
-    <dependencies>
-      <dep package="freetype2"/>
-      <dep package="libxml2"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="caribou" autogenargs="--disable-gtk2-module">
     <branch/>
     <dependencies>
@@ -601,7 +586,7 @@
   </autotools>
 
   <autotools id="grilo">
-    <branch revision="0.2.x"/>
+    <branch/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -616,7 +601,7 @@
   </autotools>
 
   <autotools id="grilo-plugins">
-    <branch revision="0.2.x"/>
+    <branch/>
     <dependencies>
       <dep package="grilo"/>
       <dep package="libxml2"/>
@@ -657,7 +642,6 @@
   <autotools id="gtksourceview">
     <branch/>
     <dependencies>
-      <dep package="intltool"/>
       <dep package="libxml2"/>
       <dep package="shared-mime-info"/>
       <dep package="gtk+"/>
@@ -891,20 +875,6 @@
     <dependencies>
       <dep package="glib"/>
       <dep package="gupnp"/>
-    </dependencies>
-  </autotools>
-
-  <!-- Remove annoying autogen-sh="autoreconf" when itstool.use-correct-libxml.patch is removed -->
-  <autotools id="itstool" autogen-sh="autoreconf">
-    <branch repo="itstool.org"
-            module="itstool-2.0.2.tar.bz2"
-            version="2.0.2"
-            hash="sha256:bf909fb59b11a646681a8534d5700fec99be83bb2c57badf8c1844512227033a"
-            size="96748">
-      <patch file="itstool.use-correct-libxml.patch" strip="1"/>
-    </branch>
-    <dependencies>
-      <dep package="libxml2-python"/>
     </dependencies>
   </autotools>
 
@@ -1331,9 +1301,9 @@
     </if>
     <pkg-config>webkit2gtk-4.0.pc</pkg-config>
     <branch repo="webkitgtk.org"
-            module="webkitgtk-2.10.2.tar.xz" version="2.10.2"
-            hash="sha256:6adf497d24e36660037b84dfc1c53ac7f47bd4c459162290c49436eaa959a18f"
-            size="11011532">
+            module="webkitgtk-2.10.3.tar.xz" version="2.10.3"
+            hash="sha256:2b3ee0b2ea9bac82064d818085e09236d5fca97a5780d4c731b2f0400fb64052"
+            size="11013220">
     </branch>
     <dependencies>
       <dep package="c++"/>
